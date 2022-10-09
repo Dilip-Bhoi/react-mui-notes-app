@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const notesRoute = require('./routers/notes')
 
 require('dotenv').config()
-console.log("i am here", process.env)
+
 const { PORT } = process.env
 
 const app = express()
