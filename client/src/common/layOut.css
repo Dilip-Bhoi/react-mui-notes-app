@@ -18,10 +18,11 @@
   background-color: #f4f4f4 !important;
 }
 
-.app-bar-class {
-  width: calc(100% - 180px) !important;
-}
-
 .app-bar-tool {
   justify-content: space-between;
+}
+
+.menu_icon {
+  color: white;
+  cursor: pointer;
 }

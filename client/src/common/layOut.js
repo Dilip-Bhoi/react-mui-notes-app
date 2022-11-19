@@ -1,6 +1,6 @@
 
 import { useNavigate, useLocation } from 'react-router-dom';
-
+import { useState } from 'react';
 import {
   Typography,
   Drawer,
@@ -14,6 +14,7 @@ import {
 } from '@mui/material'
 import SubjectOutlinedIcon from '@mui/icons-material/SubjectOutlined';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import './layOut.css'
 const paperWidth = {
   width: 240
@@ -32,35 +33,43 @@ const menuItems = [
 ]
 const LayOut = ({ children }) => {
   const navigate = useNavigate();
-  const location = useLocation()
+  const location = useLocation();
+
+  const [showDrawer, setShowDrawer] = useState(false)
+  const onClickMenu = () =>setShowDrawer(true)
+  const onClickOptions = (item) => {
+    navigate(item.path)
+    setShowDrawer(false)
+  }
 
   return (
     <div className='layout-container'>
       <AppBar className='app-bar-class' color='secondary'>
         <Toolbar className='app-bar-tool'>
+          <MenuRoundedIcon className='menu_icon' onClick={onClickMenu}/>
           <Typography color='white'>
             Welcome to the Notes App
           </Typography>
-          <Avatar>
-
-          </Avatar>
+          <Avatar></Avatar>
         </Toolbar>
       </AppBar>
       <Drawer
-        variant='permanent'
+        variant='temporary'
         className='drawer'
         anchor='left'
+        open={showDrawer}
+        onClose={()=>setShowDrawer(false)}
       >
         <div>
-          <Typography variant='h6' color='secondary'>
+          {/* <Typography variant='h6' color='secondary'>
             Dilip Bhoi
-          </Typography>
+          </Typography> */}
           <List>
             {menuItems.map((item) => (
               <ListItem
                 key={item.text}
                 button
-                onClick={() => navigate(item.path)}
+                onClick={() => onClickOptions(item)}
                 className={location.pathname === item.path ? 'active' : ''}
               >
                 <ListItemIcon>{item.icon}</ListItemIcon>
