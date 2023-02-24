@@ -56,7 +56,7 @@ const Create = () => {
       color='textSecondary'
       gutterBottom
     >
-      Create a New Note
+      Create a new Note
     </Typography>
 
     <form noValidate autoComplete='off' onSubmit={handleSubmit}>
